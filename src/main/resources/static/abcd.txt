@@ -1,0 +1,14 @@
+//dev- user base is minimal- actual users, dependent services
+
+//staging - user base increases
+
+//production - live site
+
+//build pipeline
+
+
+java spring boot  ---------- data storage (mysql)
+
+developer - write some code (notification system, button) - dev environment (mysql - 1 instance)- dev.amazon.com - staging (2 mysql)
+
+-- production (amazon.com, live site)- (100s of mysql instance)
