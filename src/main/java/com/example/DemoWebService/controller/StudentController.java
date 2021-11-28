@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -30,18 +29,23 @@ public class StudentController {
 
     @RequestMapping("/students")
     public ResponseEntity<List<Student>> getAllStudents(){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(studentService.getStudentList());
+        return new ResponseEntity<List<Student>>(studentService.getStudentList(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value="/addStudent")
-    public void addStudent(@RequestBody Student student){
-        studentService.addStudent(student);
+    public ResponseEntity<Integer> addStudent(@RequestBody Student student){
+        //studentService.addStudent(student);
+        return new ResponseEntity<Integer>((Integer) studentService.addStudent(student), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/deleteStudent/{rollid}")
     public void deleteStudent(@PathVariable("rollid") int rollid){
-        studentService.deleteStudent(rollid);
+        //studentService.deleteStudent(rollid);
     }
+
+
+
+    //client ------http(s)-------server[security layer(oauth) + spring boot layer+storage mysql+redis+kafka]
 
 
 }

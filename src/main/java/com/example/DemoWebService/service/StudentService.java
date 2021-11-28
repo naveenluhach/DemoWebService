@@ -1,6 +1,9 @@
 package com.example.DemoWebService.service;
 
 import com.example.DemoWebService.model.Student;
+import com.example.DemoWebService.util.StudentDataAccess;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,26 +17,14 @@ public class StudentService {
     Purpose: To interact between controller and data source/ data maintaining layer
      */
 
-    private List<Student> studentList = new ArrayList<>(Arrays.asList(new Student(1, "studentName", "cs"), new Student(2, "studentName2", "mech")));
+   @Autowired
+   private StudentDataAccess studentDataAccess;
 
     public List<Student> getStudentList(){
-        return studentList;
+        return studentDataAccess.getStudentList();
     }
 
-    public void addStudent(Student student) {
-        if(student.getName()!="") {
-            studentList.add(student);
-        }else {
-            System.out.println("name is empty, class name, addStudent");
-            //write to file some text file.
-        }
-    }
-
-    public void deleteStudent(int id) {
-        studentList = studentList.stream().filter(student->student.getRollid()!=id).collect(Collectors.toList());
-
-//        studentList.stream().filter(student->student.getRollid()!=id).forEach(student -> {
-//            studentList.remove(student);
-//        });
+    public int addStudent(Student student) {
+        return studentDataAccess.addStudent(student);
     }
 }
