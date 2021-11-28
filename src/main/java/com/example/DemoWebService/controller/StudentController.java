@@ -39,8 +39,8 @@ public class StudentController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/deleteStudent/{rollid}")
-    public void deleteStudent(@PathVariable("rollid") int rollid){
-        //studentService.deleteStudent(rollid);
+    public ResponseEntity<Integer> deleteStudent(@PathVariable("rollid") int rollid){
+        return new ResponseEntity<>(studentService.deleteStudentById(rollid), HttpStatus.OK);
     }
 
 

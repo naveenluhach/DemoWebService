@@ -1,8 +1,5 @@
 package com.example.DemoWebService.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.stereotype.Component;
-
 public class Student {
     private int id;
     private String name;
